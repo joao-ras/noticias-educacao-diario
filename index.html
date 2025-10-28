@@ -4,85 +4,57 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notícias Educação & Concursos Docentes</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
-        body { background: #f5f5f5; color: #333; line-height: 1.6; }
-        header { background: #1a73e8; color: white; padding: 1rem; text-align: center; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 1rem; }
-        .news-card { background: white; margin: 1rem 0; padding: 1rem; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-        .news-title { color: #1a73e8; margin-bottom: 0.5rem; }
-        .news-summary { color: #666; margin-bottom: 0.8rem; font-size: 0.9rem; }
-        .news-link { color: #1a73e8; text-decoration: none; font-weight: bold; }
-        .concurso { border-left: 4px solid #0d7042; }
-        .loading { text-align: center; padding: 2rem; color: #666; }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1>📰 Notícias Educação & 🎓 Concursos</h1>
-        <p>Sistema de acompanhamento diário</p>
+        <h1>📰 Notícias Educação & 🎓 Concursos Docentes</h1>
+        <p>Atualizado diariamente - Foco em Letras/Educação com Doutorado</p>
     </header>
     
     <div class="container">
-        <div class="loading" id="loading">Carregando notícias...</div>
+        <div class="info-bar">
+            <div class="header-info">
+                <h2>Notícias e Concursos de Hoje</h2>
+                <p class="last-update" id="lastUpdate">Carregando...</p>
+            </div>
+            <button class="refresh-btn" id="refreshBtn">🔄 Atualizar Agora</button>
+        </div>
         
-        <div id="newsContainer">
-            <!-- Conteúdo carregado pelo JavaScript -->
+        <div class="loading" id="loading">Buscando notícias e concursos atualizados...</div>
+        
+        <div class="news-grid" id="newsContainer">
+            <!-- Conteúdo será carregado aqui -->
+        </div>
+
+        <div class="features">
+            <h3>🎯 Buscas Específicas Ativas</h3>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <span>📚</span>
+                    <p>Concursos Professor Letras + Doutorado Educação</p>
+                </div>
+                <div class="feature-item">
+                    <span>🏛️</span>
+                    <p>USP, UNESP, UNICAMP, UFMG, Institutos Federais</p>
+                </div>
+                <div class="feature-item">
+                    <span>📍</span>
+                    <p>Interior Paulista (prioridade) + Nacional</p>
+                </div>
+                <div class="feature-item">
+                    <span>📋</span>
+                    <p>SEDUC SP, MEC, Resoluções, Diário Oficial</p>
+                </div>
+            </div>
         </div>
     </div>
+    
+    <footer>
+        <p>Sistema automático de notícias e concursos docentes</p>
+        <p>Email diário às 6h | Atualização contínua</p>
+    </footer>
 
-    <script>
-        // Dados fixos para teste IMEDIATO
-        const newsData = [
-            {
-                title: "CONCURSO: USP - Professor Doutor em Letras",
-                summary: "Edital para Professor Doutor na área de Letras com doutorado em Educação.",
-                source: "USP",
-                link: "https://www5.usp.br/",
-                type: "concurso"
-            },
-            {
-                title: "SEDUC-SP publica resoluções do calendário 2025",
-                summary: "Novas resoluções sobre calendário letivo da rede estadual.",
-                source: "Diário Oficial SP", 
-                link: "https://www.imprensaoficial.com.br/",
-                type: "noticia"
-            },
-            {
-                title: "IFSP abre concurso para Professor de Português",
-                summary: "Vagas para interior paulista - doutorado em Educação/Linguística.",
-                source: "IFSP",
-                link: "https://www.ifsp.edu.br/",
-                type: "concurso"
-            }
-        ];
-
-        // Carregar notícias imediatamente
-        function loadNews() {
-            const container = document.getElementById('newsContainer');
-            const loading = document.getElementById('loading');
-            
-            // Esconder loading
-            loading.style.display = 'none';
-            
-            // Adicionar notícias
-            newsData.forEach(news => {
-                const card = document.createElement('div');
-                card.className = `news-card ${news.type}`;
-                card.innerHTML = `
-                    <h3 class="news-title">${news.title}</h3>
-                    <p class="news-summary">${news.summary}</p>
-                    <p><strong>Fonte:</strong> ${news.source}</p>
-                    <a href="${news.link}" class="news-link" target="_blank">
-                        ${news.type === 'concurso' ? '📋 Ver Edital →' : '📰 Ler Notícia →'}
-                    </a>
-                `;
-                container.appendChild(card);
-            });
-        }
-
-        // Executar quando página carregar
-        document.addEventListener('DOMContentLoaded', loadNews);
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
